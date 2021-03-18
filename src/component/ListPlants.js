@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlantDataService from "../service/PlantDataService";
 
-function ListPlants() {
+function ListPlants(props) {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
@@ -18,6 +18,14 @@ function ListPlants() {
       setPlants((prev) => prev.filter((plant) => plant.id !== id));
     }
   };
+
+  function updatePlantClicked(id) {
+    props.history.push(`/plants/${id}`)
+  }
+
+  function addPlantClicked() {
+    props.history.push(`/plants/-1`)
+  }
 
   return (
     <div className="container">
@@ -43,10 +51,24 @@ function ListPlants() {
                     Delete
                   </button>
                 </td>
+                <td>
+                  <button
+                      className="btn btn-success"
+                      onClick={() => updatePlantClicked(plant.id)}
+                  >
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="row">
+        <button className="btn btn-success"
+                onClick={() => addPlantClicked()}
+        >Add
+        </button>
       </div>
     </div>
   );
