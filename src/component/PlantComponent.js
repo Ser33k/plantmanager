@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PlantDataService from "../service/PlantDataService";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import HoverRating from "./HoverRating";
 
 function PlantComponent(props) {
   const [id, setId] = useState(parseInt(props.match.params.id));
@@ -100,6 +101,7 @@ function PlantComponent(props) {
           )}
         </Formik>
       </div>
+      <HoverRating/>
     </div>
   );
 }
