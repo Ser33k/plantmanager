@@ -29,7 +29,6 @@ function ListPlants(props) {
 
   return (
     <div className="container">
-      <h3>All Plants</h3>
       <div className="container">
         <table className="table">
           <thead>
