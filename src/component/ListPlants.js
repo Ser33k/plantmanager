@@ -20,11 +20,11 @@ function ListPlants(props) {
   };
 
   function updatePlantClicked(id) {
-    props.history.push(`/plants/${id}`)
+    props.history.push(`/plants/${id}`);
   }
 
   function addPlantClicked() {
-    props.history.push(`/plants/-1`)
+    props.history.push(`/plants/-1`);
   }
 
   return (
@@ -53,8 +53,8 @@ function ListPlants(props) {
                 </td>
                 <td>
                   <button
-                      className="btn btn-success"
-                      onClick={() => updatePlantClicked(plant.id)}
+                    className="btn btn-success"
+                    onClick={() => updatePlantClicked(plant.id)}
                   >
                     Update
                   </button>
@@ -65,9 +65,8 @@ function ListPlants(props) {
         </table>
       </div>
       <div className="row">
-        <button className="btn btn-success"
-                onClick={() => addPlantClicked()}
-        >Add
+        <button className="btn btn-success" onClick={() => addPlantClicked()}>
+          Add
         </button>
       </div>
     </div>

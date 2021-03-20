@@ -16,6 +16,13 @@ class PlantDataService {
     return axios.delete(`${PLANT_API_URL}/${id}`);
   }
 
+  updatePlant(id, plant) {
+    return axios.put(`${PLANT_API_URL}/${id}`, plant);
+  }
+
+  createPlant(plant) {
+    return axios.post(`${PLANT_API_URL}/`, plant);
+  }
 }
 
 export default new PlantDataService();
