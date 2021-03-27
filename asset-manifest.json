@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/plantmanager/static/css/main.001de8b8.chunk.css",
-    "main.js": "/plantmanager/static/js/main.e324c0ff.chunk.js",
-    "main.js.map": "/plantmanager/static/js/main.e324c0ff.chunk.js.map",
+    "main.js": "/plantmanager/static/js/main.6d2e6bf0.chunk.js",
+    "main.js.map": "/plantmanager/static/js/main.6d2e6bf0.chunk.js.map",
     "runtime-main.js": "/plantmanager/static/js/runtime-main.bc88215d.js",
     "runtime-main.js.map": "/plantmanager/static/js/runtime-main.bc88215d.js.map",
-    "static/js/2.5504a7d6.chunk.js": "/plantmanager/static/js/2.5504a7d6.chunk.js",
-    "static/js/2.5504a7d6.chunk.js.map": "/plantmanager/static/js/2.5504a7d6.chunk.js.map",
+    "static/js/2.cdf6b262.chunk.js": "/plantmanager/static/js/2.cdf6b262.chunk.js",
+    "static/js/2.cdf6b262.chunk.js.map": "/plantmanager/static/js/2.cdf6b262.chunk.js.map",
     "static/js/3.db0af998.chunk.js": "/plantmanager/static/js/3.db0af998.chunk.js",
     "static/js/3.db0af998.chunk.js.map": "/plantmanager/static/js/3.db0af998.chunk.js.map",
     "index.html": "/plantmanager/index.html",
     "static/css/main.001de8b8.chunk.css.map": "/plantmanager/static/css/main.001de8b8.chunk.css.map",
-    "static/js/2.5504a7d6.chunk.js.LICENSE.txt": "/plantmanager/static/js/2.5504a7d6.chunk.js.LICENSE.txt"
+    "static/js/2.cdf6b262.chunk.js.LICENSE.txt": "/plantmanager/static/js/2.cdf6b262.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bc88215d.js",
-    "static/js/2.5504a7d6.chunk.js",
+    "static/js/2.cdf6b262.chunk.js",
     "static/css/main.001de8b8.chunk.css",
-    "static/js/main.e324c0ff.chunk.js"
+    "static/js/main.6d2e6bf0.chunk.js"
   ]
 }
