@@ -1,6 +1,6 @@
 import React from "react";
 import ListPlants from "./ListPlants";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import PlantComponent from "./PlantComponent";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 
