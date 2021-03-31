@@ -1,20 +1,24 @@
-import React from "react";
+import React, {useContext} from "react";
 import ListPlants from "./ListPlants";
-import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import PlantComponent from "./PlantComponent";
+import LoginComponent from "./LoginComponent";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
+import SignUpComponent from "./SignUpComponent";
+import {StoreContext} from "../store/storeProvider";
 
 function PlantManagerApp() {
+    const { user } = useContext(StoreContext);
+    console.log(user);
   return (
     <Router>
-        <>
-            <PrimarySearchAppBar/>
             <Switch>
-                <Route path="/" exact component={ListPlants} />
-                <Route path="/plants" exact component={ListPlants} />
-                <Route path="/plants/:id" component={PlantComponent} />
+                <Route path="/"  exact render={()=> user ? (<><PrimarySearchAppBar /> <ListPlants /></>) : <>
+                < PrimarySearchAppBar />
+                < SignUpComponent />
+                </>} />
+                <Route path="/plants/:id" exact component={PlantComponent} />
             </Switch>
-        </>
     </Router>
   );
 }
