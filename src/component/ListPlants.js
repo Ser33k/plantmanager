@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import PlantDataService from "../service/PlantDataService";
 
 function ListPlants(props) {
   const [plants, setPlants] = useState([]);
-
+  let history = useHistory();
   useEffect(() => {
     PlantDataService.retrieveAllPlants().then((response) => {
-      console.log(response);
       setPlants(response.data);
     });
   }, []);
@@ -20,11 +20,11 @@ function ListPlants(props) {
   };
 
   function updatePlantClicked(id) {
-    props.history.push(`/plants/${id}`);
+    history.push(`/plants/${id}`);
   }
 
   function addPlantClicked() {
-    props.history.push(`/plants/-1`);
+    history.push(`/plants/-1`);
   }
 
   return (
