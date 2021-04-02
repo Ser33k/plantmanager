@@ -1,27 +1,29 @@
 import axios from "axios";
 
-const MANAGER_API_URL = "http://localhost:8080";
+const MANAGER_API_URL = "http://localhost:8080/users";
 const PLANT_API_URL = `${MANAGER_API_URL}/plants`;
 
 class PlantDataService {
-  retrievePlant(id) {
-    return axios.get(`${PLANT_API_URL}/${id}`);
+  retrievePlant(userId, plantId) {
+    return axios.get(`${MANAGER_API_URL}/${userId}/plants/${plantId}`);
   }
 
-  retrieveAllPlants() {
-    return axios.get(PLANT_API_URL);
+  retrieveAllPlants(userId) {
+    return axios.get(`${MANAGER_API_URL}/${userId}/plants`);
   }
 
-  deletePlant(id) {
-    return axios.delete(`${PLANT_API_URL}/${id}`);
+  deletePlant(userId, plantId) {
+    return axios.delete(`${MANAGER_API_URL}/${userId}/plants/${plantId}`);
   }
 
-  updatePlant(id, plant) {
-    return axios.put(`${PLANT_API_URL}/${id}`, plant);
+  updatePlant(userId, plantId, plant) {
+    return axios.put(`${MANAGER_API_URL}/${userId}/plants/${plantId}`, plant);
   }
 
-  createPlant(plant) {
-    return axios.post(`${PLANT_API_URL}/`, plant);
+  createPlant(userId, plant) {
+    return axios.create({
+      validateStatus: false
+    }).post(`${MANAGER_API_URL}/${userId}/plants`, plant);
   }
 }
 

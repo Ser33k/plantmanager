@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useHistory } from 'react-router-dom';
 import PlantDataService from "../service/PlantDataService";
+import {StoreContext} from "../store/storeProvider";
 
 function ListPlants(props) {
+  const {user} = useContext(StoreContext);
   const [plants, setPlants] = useState([]);
+  console.log(plants);
   let history = useHistory();
   useEffect(() => {
-    PlantDataService.retrieveAllPlants().then((response) => {
+    PlantDataService.retrieveAllPlants(user.id).then((response) => {
       setPlants(response.data);
+      console.log(response.data);
     });
   }, []);
 
-  const deletePlantClicked = async (id) => {
-    const { status } = await PlantDataService.deletePlant(id);
-
-    if (status === 204) {
-      setPlants((prev) => prev.filter((plant) => plant.id !== id));
-    }
+  const deletePlantClicked = async (plantId) => {
+    const { status } = await PlantDataService.deletePlant(user.id, plantId);
+    console.log(status);
+    PlantDataService.retrieveAllPlants(user.id).then((response) => {
+      setPlants(response.data);
+      console.log(response.data);
+    });
   };
 
   function updatePlantClicked(id) {

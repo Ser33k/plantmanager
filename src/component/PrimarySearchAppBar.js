@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -169,6 +169,8 @@ export default function PrimarySearchAppBar() {
   const [open, setOpen] = React.useState(false);
 
   const { user, setUser } = useContext(StoreContext);
+
+  useEffect(() => setMobileMoreAnchorEl(null), [user])
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -382,7 +384,9 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle/>
             </IconButton>
-            {<ColorButton onClick={() => setUser(null)} component={Link} to="/" variant="contained" color="primary" className={classes.logoutButton}>
+            {<ColorButton onClick={() => {
+              setUser(null);
+            } } component={Link} to="/" variant="contained" color="primary" className={classes.logoutButton}>
               LOGOUT
             </ColorButton>}
           </div> : null}
