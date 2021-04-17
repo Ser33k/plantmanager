@@ -34,6 +34,7 @@ import cyan from "@material-ui/core/colors/cyan";
 import indigo from "@material-ui/core/colors/indigo";
 import LoginComponent from "./LoginComponent";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SearchService from "../service/SearchService";
 
 const drawerWidth = 240;
 
@@ -325,6 +326,15 @@ export default function PrimarySearchAppBar() {
     </Drawer>
   );
 
+  function handleSearchInput(event) {
+    let name = event.target.value
+    SearchService.searchPlant(name).then( response => {
+      console.log(response.data)
+    })
+
+  }
+
+
   return (
     <div className={classes.grow}>
       <CssBaseline />
@@ -360,6 +370,7 @@ export default function PrimarySearchAppBar() {
                   input: classes.inputInput,
                 }}
                 inputProps={{"aria-label": "search"}}
+                onChange={handleSearchInput}
             />
           </div> : null}
           <div className={classes.grow} />
