@@ -5,7 +5,7 @@ const PLANT_API_URL = `${MANAGER_API_URL}/plants`;
 
 class PlantDataService {
   retrievePlant(userId, plantId) {
-    return axios.get(`${MANAGER_API_URL}/${userId}/plants/${plantId}`);
+    return axios.get(`http://localhost:8080/plants/${plantId}`);
   }
 
   retrieveAllPlants(userId) {
@@ -17,7 +17,7 @@ class PlantDataService {
   }
 
   updatePlant(userId, plantId, plant) {
-    return axios.put(`${MANAGER_API_URL}/${userId}/plants/${plantId}`, plant);
+    return axios.put(`http://localhost:8080/plants/${plantId}`, plant);
   }
 
   createPlant(userId, plant) {
