@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -35,6 +35,8 @@ import indigo from "@material-ui/core/colors/indigo";
 import LoginComponent from "./LoginComponent";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SearchService from "../service/SearchService";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
 
 const drawerWidth = 240;
 
@@ -53,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: "relative",
+    padding: "30px",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.black, 0.0),
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
@@ -63,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: "auto",
+      width: "300px",
     },
   },
   searchIcon: {
@@ -326,10 +329,13 @@ export default function PrimarySearchAppBar() {
     </Drawer>
   );
 
+  const [plants, setPlants] = useState([]);
+
   function handleSearchInput(event) {
     let name = event.target.value
     SearchService.searchPlant(name).then( response => {
       console.log(response.data)
+      setPlants(response.data)
     })
 
   }
@@ -359,19 +365,51 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Plant Manager
           </Typography>
-          {user ? <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon/>
-            </div>
-            <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{"aria-label": "search"}}
-                onChange={handleSearchInput}
+          {user ? <div
+              // className={classes.search}
+          >
+            {/*<div className={classes.searchIcon}>*/}
+            {/*  <SearchIcon/>*/}
+            {/*</div>*/}
+            {/*<InputBase placeholder="Search…"*/}
+            {/*           classes={{*/}
+            {/*             root: classes.inputRoot,*/}
+            {/*             input: classes.inputInput,*/}
+            {/*           }}*/}
+            {/*           inputProps={{"aria-label": "search"}}*/}
+            {/*           onChange={handleSearchInput}*/}
+            {/*>*/}
+
+
+
+            {/*  /!*<Autocomplete*!/*/}
+            {/*  /!*    id="free-solo-demo"*!/*/}
+            {/*  /!*    freeSolo*!/*/}
+            {/*  /!*    options={plants.map((option) => option.name)}*!/*/}
+            {/*  /!*    renderInput={(params) => (*!/*/}
+            {/*  /!*        <TextField {...params}  label="freeSolo" margin="normal" variant="outlined" />*!/*/}
+            {/*  /!*    )}*!/*/}
+            {/*  /!*//*/}
+            {/*</InputBase>*/}
+            <Autocomplete
+                // id="free-solo-demo"
+                // freeSolo
+
+                options={plants.map((option) => option.name)}
+                style={{color: "white"}}
+
+                renderInput={(params) => (
+                    <TextField {...params}
+                               classes={{
+                                 root: classes.inputRoot,
+                                 input: classes.inputInput,
+                               }}
+                               style={{color: "white"}}
+                               onChange={handleSearchInput}
+                               label="freeSolo" margin="normal" variant="outlined" />
+                )}
             />
+
           </div> : null}
           <div className={classes.grow} />
           {user ? <div className={classes.sectionDesktop}>
