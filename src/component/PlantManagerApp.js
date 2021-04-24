@@ -6,6 +6,7 @@ import LoginComponent from "./LoginComponent";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import SignUpComponent from "./SignUpComponent";
 import {StoreContext} from "../store/storeProvider";
+import UserDashboard from "./UserDashboard";
 
 function PlantManagerApp() {
     const { user } = useContext(StoreContext);
@@ -13,7 +14,7 @@ function PlantManagerApp() {
   return (
     <Router>
             <Switch>
-                <Route path="/"  exact render={()=> user ? (<><PrimarySearchAppBar /> <ListPlants /></>) : <>
+                <Route path="/"  exact render={()=> user ? (<><PrimarySearchAppBar /> <UserDashboard /></>) : <>
                 < PrimarySearchAppBar />
                 < SignUpComponent />
                 </>} />
