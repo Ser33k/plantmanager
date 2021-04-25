@@ -37,6 +37,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SearchService from "../service/SearchService";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import {deepPurple} from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -48,19 +49,22 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    color: "white",
+    fontSize: "30px",
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
+    "&:hover": {
+      color: cyan[200],
+      textDecoration: "none"
+
+    }
   },
   search: {
     position: "relative",
-    padding: "30px",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.black, 0.0),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
+
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
@@ -79,7 +83,20 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   inputRoot: {
-    color: "inherit",
+    borderRadius: theme.shape.borderRadius,
+    "& .MuiAutocomplete-inputRoot[class*='MuiFilledInput-root'] .MuiAutocomplete-input": {
+      color: "white",
+
+    },
+    backgroundColor: fade(deepPurple[600], 0.6),
+
+    "&:focus": {
+      backgroundColor: fade(deepPurple[400], 1),
+    },
+    "&:hover": {
+      backgroundColor: fade(deepPurple[400], 1),
+    },
+
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -225,7 +242,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem  onClick={handleMenuClose}><Link to="/profile">My Account</Link></MenuItem>
     </Menu>
   );
 
@@ -362,51 +379,31 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon/>
           </IconButton> : null}
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Link to="/" className={classes.title} variant="h6" noWrap>
             Plant Manager
-          </Typography>
+          </Link>
           {user ? <div
-              // className={classes.search}
+              className={classes.search}
           >
-            {/*<div className={classes.searchIcon}>*/}
-            {/*  <SearchIcon/>*/}
-            {/*</div>*/}
-            {/*<InputBase placeholder="Search…"*/}
-            {/*           classes={{*/}
-            {/*             root: classes.inputRoot,*/}
-            {/*             input: classes.inputInput,*/}
-            {/*           }}*/}
-            {/*           inputProps={{"aria-label": "search"}}*/}
-            {/*           onChange={handleSearchInput}*/}
-            {/*>*/}
 
-
-
-            {/*  /!*<Autocomplete*!/*/}
-            {/*  /!*    id="free-solo-demo"*!/*/}
-            {/*  /!*    freeSolo*!/*/}
-            {/*  /!*    options={plants.map((option) => option.name)}*!/*/}
-            {/*  /!*    renderInput={(params) => (*!/*/}
-            {/*  /!*        <TextField {...params}  label="freeSolo" margin="normal" variant="outlined" />*!/*/}
-            {/*  /!*    )}*!/*/}
-            {/*  /!*//*/}
-            {/*</InputBase>*/}
             <Autocomplete
                 // id="free-solo-demo"
                 // freeSolo
 
                 options={plants.map((option) => option.name)}
-                style={{color: "white"}}
 
                 renderInput={(params) => (
                     <TextField {...params}
                                classes={{
                                  root: classes.inputRoot,
-                                 input: classes.inputInput,
+                                 // input: classes.inputInput,
                                }}
-                               style={{color: "white"}}
                                onChange={handleSearchInput}
-                               label="freeSolo" margin="normal" variant="outlined" />
+                               label="Search..."
+                               margin="normal"
+                               variant="filled"
+                                fullWidth
+                    />
                 )}
             />
 
