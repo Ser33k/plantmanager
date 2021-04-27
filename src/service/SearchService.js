@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "../axios-config";
 
-const SEARCH_API_URL = "http://localhost:8080/plants";
+const SEARCH_API_URL = "/plants";
 
 class SearchService {
     searchPlant(name) {
