@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -46,6 +46,31 @@ const useStyles = makeStyles((theme) => ({
 export function Profile() {
     const classes = useStyles();
     const {user} = useContext(StoreContext);
+    const [picture, setPicture] = useState(userJpg)
+
+    const pickerOpts = {
+        types: [
+            {
+                description: 'Images',
+                accept: {
+                    'image/*': ['.png', '.gif', '.jpeg', '.jpg']
+                }
+            },
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false
+    };
+
+    async function getTheFile() {
+        let fileHandle
+        // open file picker
+        [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+
+        // get file contents
+        const fileData = await fileHandle.getFile();
+        const objectURL = window.URL.createObjectURL(fileData);
+        setPicture(objectURL)
+    }
 
 
     return (
@@ -53,13 +78,16 @@ export function Profile() {
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image={userJpg}
+                image={picture}
                 title={user.name}
                 classes={{
                     root: classes.imgRoot,
                 }}
             >
-                <Button className={classes.button} variant="contained" color="primary">
+                <Button className={classes.button}
+                        variant="contained"
+                        onClick={getTheFile}
+                        color="primary">
                     CHANGE AVATAR
                 </Button>
             </CardMedia>
