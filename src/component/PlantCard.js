@@ -15,6 +15,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import cactus from "./../static/images/cards/cactus.jpg"
 import {StoreContext} from "../store/storeProvider";
 import {Remove, Update} from "@material-ui/icons";
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,10 @@ export default function PlantCard(props) {
         history.push(`/plants/${id}`);
     }
 
+    function showMeasurements(id) {
+        history.push(`measurement/${id}`);
+    }
+
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -49,16 +54,18 @@ export default function PlantCard(props) {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon/>
                     </IconButton>
                 }
                 title={props.plant.name}
                 subheader={props.plant.description}
             />
             <CardMedia
+                onClick={() => showMeasurements(props.plant.id)}
                 className={classes.media}
                 image={cactus}
                 title={props.plant.name}
+                style={{cursor: 'pointer'}}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -67,18 +74,18 @@ export default function PlantCard(props) {
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
+                    <FavoriteIcon/>
                 </IconButton>
                 <IconButton aria-label="update"
                             onClick={() => updatePlantClicked(props.plant.id)}>
-                    <Update />
+                    <Update/>
+                </IconButton>
+                <IconButton onClick={() => showMeasurements(props.plant.id)} aria-label="share">
+                    <EqualizerIcon/>
                 </IconButton>
                 <IconButton aria-label="remove"
                             onClick={() => props.delete(props.plant)}>
-                    <Remove />
+                    <Remove/>
                 </IconButton>
             </CardActions>
         </Card>

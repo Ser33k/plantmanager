@@ -40,7 +40,6 @@ function PlantComponent(props) {
 
   const handleOnSubmit = (values) => {
     const { id, name, description } = values;
-
     const plant = {
       name,
       description,
@@ -50,6 +49,7 @@ function PlantComponent(props) {
     console.log(user);
     console.log(plant);
     if (id === -1) {
+
       PlantDataService.createPlant(user.id, plant).then(() => history.push("/"));
     } else {
       PlantDataService.updatePlant(user.id, id, plant).then(() =>
