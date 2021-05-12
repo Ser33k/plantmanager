@@ -18,9 +18,7 @@ class PlantDataService {
   }
 
   createPlant(userId, plant) {
-    return axios.create({
-      validateStatus: false
-    }).post(`/users/${userId}/plants`, plant);
+    return axios.post(`/users/${userId}/plants`, plant);
   }
 }
 
