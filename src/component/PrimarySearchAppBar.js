@@ -38,7 +38,10 @@ import SearchService from "../service/SearchService";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import {deepPurple} from "@material-ui/core/colors";
-
+import NotificationsPopupComponent from "./NotificationsPopupComponent";
+import MessagesPopupComponent from "./MessagesPopupComponents";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import logo from './images/logo.png';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -52,26 +55,38 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: "30px",
     display: "none",
+    alignItems:"center",
+    padding: "3px",
+    "& > img": {
+      marginRight: "20px"
+    },
+    "& h1":{
+      display: "inline-block",
+      paddingTop: "5px"
+    },
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
     "&:hover": {
       color: cyan[200],
       textDecoration: "none"
+    },
 
-    }
   },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+    maxHeight: "40px",
+    marginLeft: "200px",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
+      marginLeft: "200px",
       width: "300px",
     },
+    "& div": {
+      maxHeight: "50px",
+
+    }
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -84,17 +99,20 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     borderRadius: theme.shape.borderRadius,
+    backgroundColor: "#fff",
+
+
     "& .MuiAutocomplete-inputRoot[class*='MuiFilledInput-root'] .MuiAutocomplete-input": {
-      color: "white",
+      color: "#000",
 
     },
-    backgroundColor: fade(deepPurple[600], 0.6),
+    // backgroundColor: fade(deepPurple[600], 0.6),
 
     "&:focus": {
-      backgroundColor: fade(deepPurple[400], 1),
+      // backgroundColor: fade(deepPurple[400], 1),
     },
     "&:hover": {
-      backgroundColor: fade(deepPurple[400], 1),
+      // backgroundColor: fade(deepPurple[400], 1),
     },
 
   },
@@ -126,6 +144,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+  backgroundColor: "#28965a"
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -174,7 +193,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   logoutButton: {
-    marginLeft: theme.spacing(3)
+    marginLeft: theme.spacing(3),
+    backgroundColor: "#fff"
+  },
+  logo: {
+    // maxHeight: "50%",
+
+      height: "45px"
+
   }
 }));
 
@@ -218,10 +244,11 @@ export default function PrimarySearchAppBar() {
     setOpen(false);
   };
 
+
   const ColorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText(indigo[800]),
-      backgroundColor: indigo[900],
+      color: "#000",
+      backgroundColor: "#a1ef8b",
       '&:hover': {
         backgroundColor: cyan[800],
         color: theme.palette.getContrastText(cyan[600]),
@@ -357,9 +384,17 @@ export default function PrimarySearchAppBar() {
 
   }
 
+  const [notifications, setNotifications] = useState(false);
 
+  const handleNotificationsClick = () => setNotifications(prevState => !prevState);
+
+  const [messages, setMessages] = useState(false);
+  const handleMessagesClick = () => setMessages(!messages);
+  const handleMessagesClose = () => setMessages(false);
+
+  const handleClickAway = () => setNotifications(false)
   return (
-    <div className={classes.grow}>
+    <div style={{height: "67px"}}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -368,19 +403,22 @@ export default function PrimarySearchAppBar() {
         })}
       >
         <Toolbar>
-          {user ? <IconButton
-              edge="start"
-              onClick={handleDrawerOpen}
-              color="inherit"
-              aria-label="open drawer"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-          >
-            <MenuIcon/>
-          </IconButton> : null}
+          {/*{user ? <IconButton*/}
+          {/*    edge="start"*/}
+          {/*    onClick={handleDrawerOpen}*/}
+          {/*    color="inherit"*/}
+          {/*    aria-label="open drawer"*/}
+          {/*    className={clsx(classes.menuButton, {*/}
+          {/*      [classes.hide]: open,*/}
+          {/*    })}*/}
+          {/*>*/}
+          {/*  <MenuIcon/>*/}
+          {/*</IconButton> : null}*/}
           <Link to="/" className={classes.title} variant="h6" noWrap>
-            Plant Manager
+            {/*<div className={classes.logoContainer}>*/}
+              <img className={classes.logo} src={logo} alt=""/>
+            {/*</div>*/}
+            <h1>Plant Manager</h1>
           </Link>
           {user ? <div
               className={classes.search}
@@ -400,7 +438,6 @@ export default function PrimarySearchAppBar() {
                                }}
                                onChange={handleSearchInput}
                                label="Search..."
-                               margin="normal"
                                variant="filled"
                                 fullWidth
                     />
@@ -410,15 +447,17 @@ export default function PrimarySearchAppBar() {
           </div> : null}
           <div className={classes.grow} />
           {user ? <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton onClick={handleMessagesClick} aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon/>
               </Badge>
+              {messages ? <MessagesPopupComponent /> : null}
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton onClick={handleNotificationsClick}  aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon/>
               </Badge>
+              {notifications ? <ClickAwayListener onClickAway={handleClickAway}><NotificationsPopupComponent /></ClickAwayListener> : null}
             </IconButton>
             <IconButton
                 edge="end"
@@ -432,7 +471,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             {<ColorButton onClick={() => {
               setUser(null);
-            } } component={Link} to="/" variant="contained" color="primary" className={classes.logoutButton}>
+            } } component={Link} to="/" variant="contained" className={classes.logoutButton}>
               LOGOUT
             </ColorButton>}
           </div> : null}
@@ -462,12 +501,12 @@ export default function PrimarySearchAppBar() {
 
         </Toolbar>
       </AppBar>
-      {user ? renderMobileMenu : null}
-      {user ? renderMenu : null}
-      {user ? renderMiniDrawer : null}
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-      </main>
+      {/*{user ? renderMobileMenu : null}*/}
+      {/*{user ? renderMenu : null}*/}
+      {/*{user ? renderMiniDrawer : null}*/}
+      {/*<main className={classes.content}>*/}
+      {/*  <div className={classes.toolbar} />*/}
+      {/*</main>*/}
     </div>
   );
 }

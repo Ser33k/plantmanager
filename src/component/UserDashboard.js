@@ -25,7 +25,7 @@ export default function UserDashboard() {
         // const index = plants.indexOf(plant);
         // const filtered = plants.filter(function(plant) { return plant.id !== index })
         // setPlants(filtered)
-        const { status } = await PlantDataService.deletePlant(user.id, plant.id)
+        const {status} = await PlantDataService.deletePlant(user.id, plant.id)
         PlantDataService.retrieveAllPlants(user.id).then((response) => {
             setPlants(response.data)
             console.log(response.data)
@@ -34,14 +34,20 @@ export default function UserDashboard() {
     };
 
     return (
-        <div>
+        <div className={'background'}>
             <ListPlants plants={plants} delete={deletePlantClicked}/>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => addPlantClicked()}>
-                Add plant
-            </Button>
+            <div className="add-plant-wrapper">
+                <Button
+                    variant={"contained"}
+                    style={{
+                        backgroundColor: "#a1ef8b",
+                        padding: "20px 30px",
+                        fontSize: "40px"
+                    }}
+                    onClick={() => addPlantClicked()}>
+                    Add plant
+                </Button>
+            </div>
         </div>
     )
 }

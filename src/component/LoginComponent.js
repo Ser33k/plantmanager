@@ -27,21 +27,36 @@ const useStyles = makeStyles((theme) => ({
     },
     input: {
         color: 'white'
+    },
+    btn: {
+        backgroundColor: "#a1ef8b",
+        color: "#2a6041",
+        height: "65%",
+        "&:hover": {
+            backgroundColor: "#2a6041",
+            color: "#fff"
+        },
+        marginRight: "20px",
+        marginLeft: "30px"
+    },
+    root: {
+        display: "flex",
+        alignItems: "center"
     }
 }));
 
-const ColorButton = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(indigo[800]),
-        backgroundColor: indigo[900],
-        marginTop: "8px",
-        '&:hover': {
-            backgroundColor: cyan[800],
-            color: theme.palette.getContrastText(cyan[600]),
-
-        },
-    },
-}))(Button);
+// const ColorButton = withStyles((theme) => ({
+//     root: {
+//         color: theme.palette.getContrastText(indigo[800]),
+//         backgroundColor: indigo[900],
+//         marginTop: "8px",
+//         '&:hover': {
+//             backgroundColor: cyan[800],
+//             color: theme.palette.getContrastText(cyan[600]),
+//
+//         },
+//     },
+// }))(Button);
 
 const LoginComponent = () => {
 
@@ -114,9 +129,9 @@ const LoginComponent = () => {
                         style: { color: '#fff' },
                     }}
                 />
-                <ColorButton type="submit" variant="contained" color="primary"  className={classes.margin}>
+                <Button type="submit" variant="contained"  className={classes.btn}>
                     LOGIN
-                </ColorButton>
+                </Button>
                 {/*<Button color="primary" variant="contained" fullWidth type="submit">*/}
                 {/*    Submit*/}
                 {/*</Button>*/}

@@ -1,1 +1,59 @@
 @import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container1 {
+    overflow: hidden;
+}
+
+.background {
+    min-height: calc(100vh - 67px);
+    width: 100%;
+    position: relative;
+}
+
+.background::after {
+    content: '';
+    display: block;
+    opacity: 0.2;
+    background-image: url("./component/images/plant_back.png");
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.plant-component {
+    min-height: calc(100vh - 67px);
+}
+
+
+.MuiGridListTile-tile {
+    width: 50%;
+}
+
+.add-plant-wrapper {
+    text-align: center;
+    padding: 20px 0;
+
+}
+
+.plant-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-header {
+    text-align: center;
+    border-bottom: 1px solid #28965a;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+    font-size: 40px;
+}

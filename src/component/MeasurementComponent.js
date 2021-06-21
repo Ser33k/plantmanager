@@ -22,10 +22,14 @@ import {deepPurple, purple} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        maxWidth: '60vw',
         justifyContent: "space-around",
         alignItems: "center",
-        alignContent: "center"
+        alignContent: "center",
+        padding: "60px",
+        marginLeft: "auto",
+        marginRight: "auto"
+
     },
     head:{
         fontSize: theme.typography.pxToRem(30),
@@ -60,10 +64,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "white"
     },
     title: {
-        margin: '20px'
+        textAlign: "center",
+        margin: "10px"
     },
     accordion: {
-        backgroundColor: deepPurple[50]
+        backgroundColor: "#afe3c0"
     }
 
 }));
@@ -127,12 +132,15 @@ const MeasurementComponent = (props) => {
         <Typography variant='h5'>There is no measurements for this plant :(</Typography>
 
     return (
+        <div className="background">
+
         <div className={classes.root}>
             <Typography className={classes.title} variant='h3' component='h2'>Measurements</Typography>
             <Divider className={classes.divider}/>
             <Typography className={classes.title} variant='h4' component='h4'>{plant.name}</Typography>
 
             {accordionComponents}
+        </div>
         </div>
     )
 }

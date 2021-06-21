@@ -7,15 +7,15 @@ import GridListTile from '@material-ui/core/GridListTile';
 function ListPlants(props) {
 
   return (
-        <div>
-          <GridList cellHeight={400}>
+        // <div className={"background"}>
+          <GridList style={{paddingTop: "60px"}} cellHeight={400}>
             {props.plants.map((plant) => (
-                <GridListTile key={plant.name}>
-                  <PlantCard plant={plant} delete={props.delete}/>
+                <GridListTile style={{display: "flex", justifyContent: "center", width: "50%"}} key={plant.name}>
+                  <PlantCard style={{width: "200px"}} plant={plant} delete={props.delete}/>
                 </GridListTile>
             ))}
           </GridList>
-        </div>
+        // </div>
   );
 }
 

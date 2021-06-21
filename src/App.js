@@ -6,7 +6,7 @@ import React from "react";
 function App() {
   return (
       <StoreProvider>
-        <div className="container">
+        <div className="container1">
             <PlantManagerApp />
         </div>
       </StoreProvider>

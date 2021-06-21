@@ -30,7 +30,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        paddingTop: "120px",
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -45,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: "#28965a",
+        "&:hover": {
+            backgroundColor: "#a1ef8b",
+            color: "#000"
+        }
     },
 }));
 
@@ -86,9 +91,8 @@ export default function SignUp() {
 
 
     return (
-        <Container style={{
-            marginTop: "120px"
-        }} component="main" maxWidth="xs">
+        <div className="background">
+        <Container  component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -165,5 +169,6 @@ export default function SignUp() {
                 </form>
             </div>
         </Container>
+        </div>
     );
 }

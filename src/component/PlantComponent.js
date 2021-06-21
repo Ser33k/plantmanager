@@ -1,9 +1,10 @@
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import PlantDataService from "../service/PlantDataService";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HoverRating from "./HoverRating";
 import {StoreContext} from "../store/storeProvider";
+import Button from "@material-ui/core/Button";
 
 function PlantComponent(props) {
   const [id, setId] = useState(parseInt(props.match.params.id));
@@ -59,9 +60,10 @@ function PlantComponent(props) {
   };
 
   return (
-    <div>
-      <h3>Plant details</h3>
-      <div className="container">
+    <div className={"background"}>
+
+      <div className="container" style={{maxWidth: "600px", paddingTop: "60px"}}>
+        <h2 className={'plant-header'} >{id === -1 ? 'Add plant' : 'Update plant'}</h2>
         <Formik
           initialValues={{ id, description, name }}
           onSubmit={(values) => handleOnSubmit(values)}
@@ -69,23 +71,25 @@ function PlantComponent(props) {
           validateOnBlur={false}
           validate={validate}
           enableReinitialize={true}
+
         >
           {(props) => (
-            <Form>
+            <Form className={'plant-form'}>
               <ErrorMessage
                 name="description"
                 component="div"
                 className="alert alert-warning"
+                style={{marginTop: "80px"}}
               />
-              <fieldset className="form-group">
-                <label>Id</label>
-                <Field
-                  className="form-control"
-                  type="text"
-                  name="id"
-                  disabled
-                />
-              </fieldset>
+              {/*<fieldset className="form-group">*/}
+              {/*  <label>Id</label>*/}
+              {/*  <Field*/}
+              {/*    className="form-control"*/}
+              {/*    type="text"*/}
+              {/*    name="id"*/}
+              {/*    disabled*/}
+              {/*  />*/}
+              {/*</fieldset>*/}
               <fieldset className="form-group">
                 <label>Description</label>
                 <Field
@@ -98,14 +102,16 @@ function PlantComponent(props) {
                 <label>Name</label>
                 <Field className="form-control" type="text" name="name" />
               </fieldset>
-              <button className="btn btn-success" type="submit">
-                Save
-              </button>
+              <HoverRating/>
+              <Button variant={"contained"} style={{backgroundColor: "#a1ef8b",  fontSize: "40px"}} type="submit">
+                Send
+              </Button>
             </Form>
           )}
         </Formik>
+
       </div>
-      <HoverRating/>
+
     </div>
   );
 }

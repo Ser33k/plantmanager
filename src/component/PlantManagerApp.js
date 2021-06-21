@@ -15,20 +15,21 @@ function PlantManagerApp() {
     console.log(user);
   return (
     <Router>
-            <Switch>
-                <Route path="/"  exact render={()=> user ? (<><PrimarySearchAppBar /> <UserDashboard /></>) : <>
-                < PrimarySearchAppBar />
+        < PrimarySearchAppBar />
+
+        <Switch>
+                <Route path="/"  exact render={()=> user ? (<><UserDashboard /></>) : <>
                 < SignUpComponent />
                 </>} />
-                <Route path="/plants/:id" exact component={PlantComponent} />
+                <Route path="/plants/:id" exact render={({location, match})=> user ? <PlantComponent match={match} location={location}/> : <SignUpComponent />} />
                 <Route path="/measurement/:id" exact render={({location, match}) => (
                     <>
-                    <PrimarySearchAppBar />
+
                     <MeasurementComponent match={match} location={location}/>
                     </>
                 )} />
                 <Route path="/profile" exact render={()=> user ? (<ProfileComponent />) : <>
-                < PrimarySearchAppBar />
+
                 < SignUpComponent />
                 </>
                 } />
