@@ -38,8 +38,8 @@ import SearchService from "../service/SearchService";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import {deepPurple} from "@material-ui/core/colors";
-import NotificationsPopupComponent from "./NotificationsPopupComponent";
-import MessagesPopupComponent from "./MessagesPopupComponents";
+// import NotificationsPopupComponent from "./NotificationsPopupComponent";
+// import MessagesPopupComponent from "./MessagesPopupComponents";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import logo from './images/logo.png';
 const drawerWidth = 240;
@@ -451,13 +451,13 @@ export default function PrimarySearchAppBar() {
               <Badge badgeContent={4} color="secondary">
                 <MailIcon/>
               </Badge>
-              {messages ? <MessagesPopupComponent /> : null}
+              {/*{messages ? <MessagesPopupComponent /> : null}*/}
             </IconButton>
             <IconButton onClick={handleNotificationsClick}  aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon/>
               </Badge>
-              {notifications ? <ClickAwayListener onClickAway={handleClickAway}><NotificationsPopupComponent /></ClickAwayListener> : null}
+              {/*{notifications ? <ClickAwayListener onClickAway={handleClickAway}><NotificationsPopupComponent /></ClickAwayListener> : null}*/}
             </IconButton>
             <IconButton
                 edge="end"
