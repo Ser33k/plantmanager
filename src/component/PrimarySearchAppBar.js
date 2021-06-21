@@ -502,7 +502,7 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {/*{user ? renderMobileMenu : null}*/}
-      {/*{user ? renderMenu : null}*/}
+      {user ? renderMenu : null}
       {/*{user ? renderMiniDrawer : null}*/}
       {/*<main className={classes.content}>*/}
       {/*  <div className={classes.toolbar} />*/}
